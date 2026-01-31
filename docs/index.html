@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaunchPad - Rocket Launch Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #0d1117 50%, #0a0a0f 100%);
+            color: #e6edf3;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 2px solid #005288;
+            position: relative;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #4dabf7, transparent);
+            animation: scanline 3s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            text-shadow: 0 0 30px rgba(77, 171, 247, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: #7d8590;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #b0b8c4;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 40px;
+            background: linear-gradient(145deg, #005288, #004470);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            border: 1px solid #0066aa;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(145deg, #0066aa, #005288);
+            box-shadow: 0 0 30px rgba(77, 171, 247, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: rgba(13, 17, 23, 0.5);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 60px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, #161b22 0%, #0d1117 100%);
+            border: 1px solid #30363d;
+            border-left: 4px solid #005288;
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: #4dabf7;
+            box-shadow: 0 0 30px rgba(77, 171, 247, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .feature-card p {
+            color: #7d8590;
+            font-size: 16px;
+        }
+
+        /* Installation Section */
+        .installation {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .installation h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .step {
+            background: linear-gradient(145deg, #161b22 0%, #0d1117 100%);
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 30px;
+            width: 250px;
+            text-align: center;
+        }
+
+        .step-number {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 48px;
+            font-weight: 700;
+            color: #4dabf7;
+            margin-bottom: 15px;
+        }
+
+        .step h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .step p {
+            color: #7d8590;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #30363d;
+            margin-top: 80px;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #4dabf7;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: #74c0fc;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            color: #484f58;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 32px;
+                letter-spacing: 4px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">LaunchPad</div>
+            <div class="tagline">Your Gateway to Space</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Track Rocket Launches in Real-Time</h1>
+            <p>Stay updated with upcoming rocket launches from around the world. Get live countdowns, detailed mission
+                information, and set alarms so you never miss a launch.</p>
+            <a href="https://chromewebstore.google.com" class="cta-button" target="_blank"
+                rel="noopener noreferrer">Install from Chrome Store</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Today's Launch Count</h3>
+                    <p>See at a glance how many rockets are launching in the next 24 hours.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>Live Countdown</h3>
+                    <p>Real-time countdown timers that update every second. Smart display shows only relevant time
+                        units.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Launch Alarms</h3>
+                    <p>Set notifications to alert you 1 hour before any launch. Never miss a liftoff again.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Detailed Information</h3>
+                    <p>Click any launch to expand and see mission details, rocket information, and launch site data.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Mission Control Style</h3>
+                    <p>Beautiful dark theme inspired by SpaceX mission control consoles.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Global Coverage</h3>
+                    <p>Track launches from SpaceX, ULA, Rocket Lab, and space agencies worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="installation">
+        <div class="container">
+            <h2>How to Install</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <h3>Download</h3>
+                    <p>Install LaunchPad from the Chrome Web Store with one click.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <h3>Pin Extension</h3>
+                    <p>Click the puzzle icon in Chrome toolbar and pin LaunchPad for easy access.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <h3>Start Tracking</h3>
+                    <p>Click the LaunchPad icon to see upcoming launches and set your alarms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="https://github.com/yourusername/LaunchPad" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://chromewebstore.google.com" target="_blank" rel="noopener noreferrer">Chrome Store</a>
+            </div>
+            <div class="copyright">
+                © 2026 LaunchPad. All rights reserved. Data provided by RocketLaunch.live.
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
